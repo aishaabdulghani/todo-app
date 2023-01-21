@@ -1,0 +1,56 @@
+.body-style {
+    background-color: #009ae0;
+    height: 100vh;
+}
+
+.todo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.add-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border: solid 2px #79d4e7;
+    border-radius: 10px;
+    margin: auto;
+    width: 700px;
+    padding: 10px;
+    background-color: #79d4e7;
+}
+
+#render {
+    justify-content: center;
+    border: solid 10px #79d4e7;
+    border-radius: 10px;
+    margin: auto;
+    width: 700px;
+    padding: 10px;
+    background-color: #ffffff;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+#render p {
+    margin-bottom: 5px;
+}
+
+.add-box button {
+    background-color: black;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.add-box input {
+    outline: 0 !important;
+}
+
+.add-box input:focus {
+    outline: 0 !important;
+    box-shadow: none;
+}

@@ -39,7 +39,10 @@ window.addingValue = function () {
     var obj = {
         todo: document.getElementById('a').value
     }
-
+    if (obj.todo == '') {
+        alert('Please Enter Value')
+        return;
+    }
     var Userref = push(ref(Db, 'Todos/'))
     obj.id = Userref.key
 
@@ -49,18 +52,20 @@ window.addingValue = function () {
 
 window.get = function () {
     var render = document.getElementById('render')
-
     onValue(ref(Db, 'Todos/'), function (todo) {
         render.innerHTML = ""
         var Todos = Object.values(todo.val())
-        for (var i = 0; i < Todos.length; i++) {
-            var app = Todos[i]
-            console.log(app.todo)
-            render.innerHTML += `<p class="text-center d-flex justify-content-evenly ms-3 pt-4">TODO : ${app.todo}   <button onclick="TodoUpdate('${app.id}')" class="btn bg-success p-2 px-5  text-light">EDIT</button>
-    <button onclick="Tododel('${app.id}')" class="btn bg-danger text-center p-2 px-5  text-light">DELETE</button> </p> <br/>`
+        if (Todos.length > 0) {
+            document.getElementById('render').style.display = 'block';
+            for (var i = 0; i < Todos.length; i++) {
+                var app = Todos[i]
+                console.log(app.todo)
+                render.innerHTML += `<p class="text-center text-dark d-flex justify-content-between ms-3 pt-3">TODO : ${app.todo}   <button onclick="TodoUpdate('${app.id}')" class="btn bg-success p-2 px-5  text-light">EDIT</button>
+                <button onclick="Tododel('${app.id}')" class="btn bg-danger text-center p-2 px-5  text-light">DELETE</button> </p> <br/>`
 
+            }
+            var a = document.getElementById('a').value = ""
         }
-        var a = document.getElementById('a').value = ""
 
     })
 }
@@ -75,7 +80,10 @@ window.deleteAll = function (id) {
 window.TodoUpdate = function (id) {
     // console.log(id);
     var NewTodo = prompt('Enter Update')
-
+    if (NewTodo == '' || NewTodo == undefined) {
+        alert('Please Enter Value')
+        return
+    }
     update(ref(Db, `Todos/${id}`), {
         todo: NewTodo
     })
